@@ -167,8 +167,8 @@ void drawGlossAndGradient(CGContextRef context,
         // Here we set default pre-embarked English strings. Localized strings will be downloaded by the SDK and sent back.
         // See the constants available in AFABNotificationBar.h to see different ways of handling this.
         
-        self.youHaveNewNotifications         = [NSString stringWithString:@""];
-        self.youDoNotHaveNewNotifications    = [NSString stringWithString:@""];
+        self.youHaveNewNotifications         = @"";
+        self.youDoNotHaveNewNotifications    = @"";
         
         [self loadLocalizedStrings];
         
