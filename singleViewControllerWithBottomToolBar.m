@@ -62,25 +62,22 @@
     [self.view addSubview:toolbar];
     [item1 release];
     
- 
- /*
- TO ADD THE NOTIFICATION BAR, include the header file and allocate it here. By default, the bar will position on the lower part of the current view's frame. You can override this by changing the frame after allocating or modifying the code directly.
- */
+    // Let's add an observer to be notified when the SDK is initialized
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appboosterIsInitialized) name:@"AFSDKisInitialized" object:nil];
+}
+
+- (void)appboosterIsInitialized {
+    /*
+     TO ADD THE NOTIFICATION BAR, include the header file and allocate it here. By default, the bar will position on the lower part of the current view's frame. You can override this by changing the frame after allocating or modifying the code directly.
+     */
     
     AFABNotificationBar *bar = [[AFABNotificationBar alloc] initWithFrameContainingBottomToolbar:self.view.bounds];
     [bar setShowWhenCountIsZero:YES];
     [self.view addSubview:bar];
     [bar release];
-
 }
 
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

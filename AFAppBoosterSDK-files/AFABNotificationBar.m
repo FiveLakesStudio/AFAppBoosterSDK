@@ -17,20 +17,18 @@
 #define kAFNotificationBarHeight                    44.0f
 #define kAFNotificationBarPaddingTopBottom          5.0f
 #define kAFNotificationBarPaddingLeft               10.0f
-#define kAFNotificationBarPaddingRight              20.0f
-
-#define kAFNotificationBarCountLabelSize            (kAFNotificationBarHeight / 4.f)
-#define kAFNotificationBarCountLabelPadding         15.f
+#define kAFNotificationBarPaddingRight              10.0f
+#define kAFNotificationBarCountLabelPadding         10.f
 
 /* Helper drawing functions */
 void drawLinearGradient(CGContextRef context,
                         CGRect rect,
-                        CGColorRef startColor, 
+                        CGColorRef startColor,
                         CGColorRef endColor);
 
 void drawGlossAndGradient(CGContextRef context,
                           CGRect rect,
-                          CGColorRef startColor, 
+                          CGColorRef startColor,
                           CGColorRef endColor);
 
 
@@ -92,10 +90,10 @@ void drawGlossAndGradient(CGContextRef context,
     return [self initWithFrame:CGRectMake(0, 0,
                                           tabbarController.tabBar.frame.size.width,
                                           [UIScreen mainScreen].bounds.size.height - tabbarController.tabBar.frame.size.height)];
-    // firstViewFrame.size.height - kAFnotificationBarHeight + 2)]; // Play with the "2" to reduce or increase vertical spacing    
+    // firstViewFrame.size.height - kAFnotificationBarHeight + 2)]; // Play with the "2" to reduce or increase vertical spacing
 }
 
-#pragma mark    Standard initWithFrame 
+#pragma mark    Standard initWithFrame
 - (id)initWithFrame:(CGRect)frame usingDisplayOption:(int)setting
 {
     self.displaySetting = setting;
@@ -111,20 +109,16 @@ void drawGlossAndGradient(CGContextRef context,
                                      frame.size.width, barHeight);
     
     self = [super initWithFrame:newFrame];
-    if (self) 
+    if (self)
     {
         hasGlossyEffect = NO;
         
         self.lightColor = [UIColor colorWithRed:65.0f/255.0f green:133.0/255.0f blue:244.0f/255.0f alpha:1.0];
-        self.darkColor = [UIColor colorWithRed:25.0/255.0 green:79.0/255.0 blue:220.0/255.0 alpha:1.0];      
+        self.darkColor = [UIColor colorWithRed:25.0/255.0 green:79.0/255.0 blue:220.0/255.0 alpha:1.0];
         self.textColor = [UIColor whiteColor];
         
         // Add notification count label
-        float originX = self.bounds.size.width - kAFNotificationBarPaddingRight - kAFNotificationBarCountLabelSize;
-        float originY = kAFNotificationBarHeight / 2 - kAFNotificationBarCountLabelSize * 0.8;
-        float size = kAFNotificationBarCountLabelSize;
-        notificationCountLabel = [[UILabel alloc] initWithFrame: CGRectMake(originX, originY, size, size)];
-        [notificationCountLabel setText:[NSString stringWithFormat:@"%d", [AFAppBoosterSDK numberOfPendingNotifications]]];
+        notificationCountLabel = [[UILabel alloc] init];
         [notificationCountLabel setTextAlignment:UITextAlignmentCenter];
         [notificationCountLabel setTextColor:darkColor];
         [notificationCountLabel setAdjustsFontSizeToFitWidth:YES];
@@ -132,10 +126,10 @@ void drawGlossAndGradient(CGContextRef context,
         [notificationCountLabel setFont:[UIFont boldSystemFontOfSize:fontSize]];
         [notificationCountLabel.layer setCornerRadius:3];
         [notificationCountLabel sizeToFit];
-        CGRect currentFrame = notificationCountLabel.frame;
-        currentFrame.size.width += 15;
-        notificationCountLabel.frame = currentFrame;
+        [notificationCountLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
         [self addSubview:notificationCountLabel];
+        
+        notificationCountLabel.text = [NSString stringWithFormat:@"%d", [AFAppBoosterSDK numberOfPendingNotifications]];
         
         // Add label
         self.lblNotification = [[[UILabel alloc] initWithFrame:CGRectMake(kAFNotificationBarPaddingLeft,
@@ -179,17 +173,24 @@ void drawGlossAndGradient(CGContextRef context,
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"text"])
+    {
+        [self layoutSubviews];
+    }
+}
+
 - (void)layoutSubviews
 {
-    float originX = self.bounds.size.width - kAFNotificationBarPaddingRight - kAFNotificationBarCountLabelSize;
-    float originY = kAFNotificationBarHeight / 2 - kAFNotificationBarCountLabelSize * 0.8;
-    float size = kAFNotificationBarCountLabelSize;
-    
-    notificationCountLabel.frame = CGRectMake(originX, originY, size + kAFNotificationBarCountLabelPadding, size);
     [notificationCountLabel sizeToFit];
-    CGRect currentFrame = notificationCountLabel.frame;
-    currentFrame.size.width += kAFNotificationBarCountLabelPadding;
-    notificationCountLabel.frame = currentFrame;
+    
+    float height = notificationCountLabel.frame.size.height;
+    float width = notificationCountLabel.frame.size.width + kAFNotificationBarCountLabelPadding;
+    float originX = self.bounds.size.width - width - kAFNotificationBarPaddingRight;
+    float originY = kAFNotificationBarHeight / 2 - height / 2;
+    
+    notificationCountLabel.frame = CGRectMake(originX, originY, width, height);
 }
 
 - (UIColor *)darkColor
@@ -340,7 +341,7 @@ void drawGlossAndGradient(CGContextRef context,
     }
 }
 
-- (void)hideBar 
+- (void)hideBar
 {
     if (self.alpha == 1.f)
     {
@@ -372,7 +373,7 @@ void drawGlossAndGradient(CGContextRef context,
         flipAnim.toValue = [NSNumber numberWithFloat:GLKMathDegreesToRadians(0)];
         [self.layer addAnimation:flipAnim forKey:@"flip"];
     }
-    else // slide animation 
+    else // slide animation
     {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:kAFNotificationBarAnimationDuration];
@@ -398,7 +399,7 @@ void drawGlossAndGradient(CGContextRef context,
         flipAnim.fillMode = kCAFillModeBoth;
         flipAnim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         flipAnim.toValue = [NSNumber numberWithFloat:GLKMathDegreesToRadians(-270)];
-        [self.layer addAnimation:flipAnim forKey:@"flipBack"];    
+        [self.layer addAnimation:flipAnim forKey:@"flipBack"];
     }
     else
     {
@@ -411,7 +412,7 @@ void drawGlossAndGradient(CGContextRef context,
         else if (animationStyle == AFAnimationStyleSlideRight)
             self.transform = CGAffineTransformTranslate(self.transform, -self.frame.size.width, 0);
         else // animationStyle == AFAnimationStyleSlideUp by default
-            self.transform = CGAffineTransformTranslate(self.transform, 0, self.frame.size.height);    
+            self.transform = CGAffineTransformTranslate(self.transform, 0, self.frame.size.height);
         [UIView commitAnimations];
     }
 }
@@ -426,7 +427,7 @@ void drawGlossAndGradient(CGContextRef context,
         [notificationCountLabel setHidden:NO];
         [self showBar];
         // else, differents cases
-    } 
+    }
     else
     {
         [lblNotification setText:self.youDoNotHaveNewNotifications];
@@ -475,7 +476,7 @@ void drawGlossAndGradient(CGContextRef context,
         [self saveLocalizedStringsWithDictionary:dict];
         [dict release];
         
-        if ((self.displaySetting == kAFABNotificationBarSetting_DisplayNowForceToEnglish || 
+        if ((self.displaySetting == kAFABNotificationBarSetting_DisplayNowForceToEnglish ||
              self.displaySetting == kAFABNotificationBarSetting_DisplayNowInDefaultLanguageAndRefreshToLocaleStringsAsSoonAsTheyBecomeAvailable)
             && localeHasBeenSet == NO
             && [self.youDoNotHaveNewNotifications isEqualToString:@""]
@@ -483,7 +484,7 @@ void drawGlossAndGradient(CGContextRef context,
         {
             // We must make sure we have English strings by now
             self.youHaveNewNotifications         = @"You have new notifications";
-            self.youDoNotHaveNewNotifications    = @"You have no new notifications"; 
+            self.youDoNotHaveNewNotifications    = @"You have no new notifications";
         }
         
     } else {
@@ -491,11 +492,11 @@ void drawGlossAndGradient(CGContextRef context,
             && ([self.youHaveNewNotifications isEqualToString:@""] && [self.youDoNotHaveNewNotifications isEqualToString:@""]))
         {
             self.youHaveNewNotifications         = @"You have new notifications";
-            self.youDoNotHaveNewNotifications    = @"You have no new notifications"; 
+            self.youDoNotHaveNewNotifications    = @"You have no new notifications";
         }
     }
     
-    [notificationCountLabel setText:[NSString stringWithFormat:@"%i",[AFAppBoosterSDK numberOfPendingNotifications]]];
+    [notificationCountLabel setText:[NSString stringWithFormat:@"%i", [AFAppBoosterSDK numberOfPendingNotifications]]];
     [notificationCountLabel setNeedsDisplay];
     
     // If we're displaying the Notification Window, then exit now
@@ -533,7 +534,7 @@ void drawGlossAndGradient(CGContextRef context,
     
 } // updateNotificationsCounter
 
-- (void)sdkIsInitializing 
+- (void)sdkIsInitializing
 {
     // NSLog(@"SDK is initializing");
 } // sdkIsInitializing
@@ -590,7 +591,7 @@ void drawGlossAndGradient(CGContextRef context,
         if ([self isHidden] == YES)
         {
             [self showBar];
-            return;            
+            return;
         }
     } else {
         if ([AFAppBoosterSDK numberOfPendingNotifications] == 0)
@@ -603,7 +604,7 @@ void drawGlossAndGradient(CGContextRef context,
 #pragma mark Dealloc
 - (void)dealloc
 {
-    
+    [notificationCountLabel removeObserver:self forKeyPath:@"text"];
     [notificationCountLabel release];
     [lightColor release];
     [darkColor release];
@@ -627,15 +628,15 @@ void drawGlossAndGradient(CGContextRef context,
 //////////////////////////////////////////////////
 void drawLinearGradient(CGContextRef context,
                         CGRect rect,
-                        CGColorRef startColor, 
-                        CGColorRef endColor) 
+                        CGColorRef startColor,
+                        CGColorRef endColor)
 {
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGFloat locations[] = { 0.0, 1.0 };
     
     NSArray *colors = [NSArray arrayWithObjects:(id)startColor, (id)endColor, nil];
     
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, 
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace,
                                                         (CFArrayRef) colors, locations);
     
     CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
@@ -653,15 +654,15 @@ void drawLinearGradient(CGContextRef context,
 
 void drawGlossAndGradient(CGContextRef context,
                           CGRect rect,
-                          CGColorRef startColor, 
+                          CGColorRef startColor,
                           CGColorRef endColor)
 {
-    drawLinearGradient(context, rect, startColor, endColor);    
-    CGColorRef glossColor1 = [UIColor colorWithRed:1.0 green:1.0 
+    drawLinearGradient(context, rect, startColor, endColor);
+    CGColorRef glossColor1 = [UIColor colorWithRed:1.0 green:1.0
                                               blue:1.0 alpha:0.35].CGColor;
-    CGColorRef glossColor2 = [UIColor colorWithRed:1.0 green:1.0 
+    CGColorRef glossColor2 = [UIColor colorWithRed:1.0 green:1.0
                                               blue:1.0 alpha:0.1].CGColor;
-    CGRect topHalf = CGRectMake(rect.origin.x, rect.origin.y, 
+    CGRect topHalf = CGRectMake(rect.origin.x, rect.origin.y,
                                 rect.size.width, rect.size.height/2);
     drawLinearGradient(context, topHalf, glossColor1, glossColor2);
 }

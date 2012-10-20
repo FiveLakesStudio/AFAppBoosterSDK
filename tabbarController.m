@@ -61,12 +61,6 @@
     [[[self viewControllers] objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%i", [AFAppBoosterSDK numberOfPendingNotifications]];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

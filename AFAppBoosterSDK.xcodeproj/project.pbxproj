@@ -26,7 +26,6 @@
 		017439991398E24A0036326A /* singleViewControllerWithBottomToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 017439981398E24A0036326A /* singleViewControllerWithBottomToolBar.m */; };
 		01830E201396777F005112CC /* tabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01830E1E1396777E005112CC /* tabbarController.m */; };
 		01830E2313967862005112CC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01830E2213967862005112CC /* MainWindow.xib */; };
-		01A032BF15766E3B00E90F94 /* libAppsfireSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01A032BE15766E3B00E90F94 /* libAppsfireSDK.a */; };
 		01B1D06B1394F3460031022B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B1D06A1394F3460031022B /* UIKit.framework */; };
 		01B1D06D1394F3470031022B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B1D06C1394F3470031022B /* Foundation.framework */; };
 		01B1D06F1394F3470031022B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B1D06E1394F3470031022B /* CoreGraphics.framework */; };
@@ -36,6 +35,7 @@
 		01CEE7E9143DB2FA000FF737 /* singleViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEE7E7143DB2FA000FF737 /* singleViewController_iPad.xib */; };
 		01CEE7F5143DBA03000FF737 /* singleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEE7F3143DBA03000FF737 /* singleViewController.m */; };
 		01CEE7F6143DBA03000FF737 /* singleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEE7F4143DBA03000FF737 /* singleViewController.xib */; };
+		01FE9E5116308489004CAD5D /* libAppboosterSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FE9E5016308489004CAD5D /* libAppboosterSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,6 @@
 		01830E1D1396777E005112CC /* tabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tabbarController.h; sourceTree = "<group>"; };
 		01830E1E1396777E005112CC /* tabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tabbarController.m; sourceTree = "<group>"; };
 		01830E2213967862005112CC /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		01A032BE15766E3B00E90F94 /* libAppsfireSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppsfireSDK.a; sourceTree = "<group>"; };
 		01B1D0661394F3460031022B /* AFAppBoosterSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFAppBoosterSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B1D06A1394F3460031022B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		01B1D06C1394F3470031022B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,6 +79,7 @@
 		01CEE7F2143DBA02000FF737 /* singleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleViewController.h; sourceTree = "<group>"; };
 		01CEE7F3143DBA03000FF737 /* singleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = singleViewController.m; sourceTree = "<group>"; };
 		01CEE7F4143DBA03000FF737 /* singleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = singleViewController.xib; sourceTree = "<group>"; };
+		01FE9E5016308489004CAD5D /* libAppboosterSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppboosterSDK.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 				01B1D06B1394F3460031022B /* UIKit.framework in Frameworks */,
 				01B1D06D1394F3470031022B /* Foundation.framework in Frameworks */,
 				01B1D06F1394F3470031022B /* CoreGraphics.framework in Frameworks */,
-				01A032BF15766E3B00E90F94 /* libAppsfireSDK.a in Frameworks */,
+				01FE9E5116308489004CAD5D /* libAppboosterSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +103,7 @@
 		011CB40114449D8D00FA5BEC /* AFAppBoosterSDK-files */ = {
 			isa = PBXGroup;
 			children = (
-				01A032BE15766E3B00E90F94 /* libAppsfireSDK.a */,
+				01FE9E5016308489004CAD5D /* libAppboosterSDK.a */,
 				01B7D2B9152066A7001EFB4B /* AFAppBoosterSDK.h */,
 				011CB40214449D8D00FA5BEC /* AFABNotificationBar.h */,
 				011CB40314449D8D00FA5BEC /* AFABNotificationBar.m */,
@@ -298,11 +298,8 @@
 		01B1D0851394F3470031022B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nicolas Jouannem (QHQ62U9D76)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -311,14 +308,14 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-all_load",
 					"-ObjC",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "C53A1C58-77BD-4787-8CDC-4DF61A31C16D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C53A1C58-77BD-4787-8CDC-4DF61A31C16D";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -327,21 +324,15 @@
 		01B1D0861394F3470031022B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
-				"ARCHS[sdk=*]" = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicolas Jouannem";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"OTHER_LDFLAGS[arch=*]" = (
@@ -365,21 +356,24 @@
 					armv6,
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Nicolas Jouannem (QHQ62U9D76)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFAppBoosterSDK-Prefix.pch";
 				INFOPLIST_FILE = "AFAppBoosterSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/AFAppBoosterSDK-files\"",
 					"\"$(SRCROOT)/AFAppBoosterSDK-files/Debug-universal\"",
 					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/AFAppBoosterSDK-dlqosfmroexetscretipcdpnjpwy/Build/Products/Debug-universal\"",
+					"\"$(SRCROOT)/../../../../../../../Library/Developer/Xcode/DerivedData/AppboosterSDK-gvunrhdzbeziznfsyyxjpsozxdvw/Build/Products/Release-universal\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "798ADC41-4B22-4A47-B234-E85B7E9D5FAD";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -389,28 +383,25 @@
 			buildSettings = {
 				"ADDITIONAL_SDKS[arch=*]" = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
-				"ARCHS[sdk=*]" = (
-					"$(ARCHS_STANDARD_32_BIT)",
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFAppBoosterSDK-Prefix.pch";
 				INFOPLIST_FILE = "AFAppBoosterSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/AFAppBoosterSDK-files\"",
 					"\"$(SRCROOT)/AFAppBoosterSDK-files/Debug-universal\"",
 					"\"$(SRCROOT)/../../../../../../Library/Developer/Xcode/DerivedData/AFAppBoosterSDK-dlqosfmroexetscretipcdpnjpwy/Build/Products/Debug-universal\"",
+					"\"$(SRCROOT)/../../../../../../../Library/Developer/Xcode/DerivedData/AppboosterSDK-gvunrhdzbeziznfsyyxjpsozxdvw/Build/Products/Release-universal\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

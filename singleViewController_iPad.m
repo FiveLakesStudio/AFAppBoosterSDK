@@ -3,7 +3,7 @@
 //  AFAppBoosterSDK
 //
 //  Created by Nick Jouannem on 10/6/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 Appsfire. All rights reserved.
 //
 
 #import "singleViewController_iPad.h"
@@ -35,7 +35,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    // Let's add an observer to be notified when the SDK is initialized
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appboosterIsInitialized) name:@"AFSDKisInitialized" object:nil];
     
+}
+
+- (void)appboosterIsInitialized {
     /*
      TO ADD THE NOTIFICATION BAR, include the header file and allocate it here. By default, the bar will position on the lower part of the current view's frame. You can override this by changing the frame after allocating or modifying the code directly.
      */
@@ -54,13 +60,6 @@
 - (IBAction)forceOpenFeedbackWindow
 {
     [AFAppBoosterSDK presentFeedback];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -60,9 +60,9 @@
     
     
     // MANDATORY - YOU MUST CALL THIS CODE HERE
+    NSString *apiKey = @"INSERT YOUR API KEY HERE";
     
-    NSString *apiKey = [NSString stringWithString:@"INSERT YOUR API KEY HERE"];
-    if ([AFAppBoosterSDK connectWithAPIKey:apiKey afterDelay:0.1f])
+    if ([AFAppBoosterSDK connectWithAPIKey:apiKey afterDelay:0.5])
         NSLog(@"Appsfire Appbooster Demo App launched with %@",[AFAppBoosterSDK getAFSDKVersionInfo]);
     else
         NSLog(@"Unabled to launch Appsfire Appbooster Demo App. Probably incompatible iOS.");
@@ -71,7 +71,7 @@
     
     
     /*
-        NEW! Apple has deprecated the UDID which means that apps using the API
+        Apple has deprecated the UDID which means that apps using the API
         call to uniqueIdentifier ([[UIDevice currentDevice] uniqueIdentifier])
         will be rejected. We strongly advise you to use the OpenUDID alternative
         which respects your user's privacy and guarantees a unique identifier for
@@ -130,7 +130,6 @@
     
     */
     
-    [AFAppBoosterSDK handleBadgeCountLocally:YES];
     
     /*
      
@@ -155,36 +154,35 @@
      
         NOTE : The email must be valid for this function to work correctly.
      
+        If you want to remove the email from the SDK form, simply send "nil"
+     
+        ie/ [AFAppBoosterSDK setUserEmail:nil isModifiable:YES];
+     
      */
-    
+
     return YES;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    // Do what you want with it
-    NSLog(@"TOKEN Registration Successful");
-    NSString *token = [[[[deviceToken description]
-                         stringByReplacingOccurrencesOfString: @"<" withString: @""]
-                        stringByReplacingOccurrencesOfString: @">" withString: @""]
-                       stringByReplacingOccurrencesOfString: @" " withString: @""];
-    NSLog(@"TOKEN = %@",token);
-    
     /*
-        These are the two function to call upon successful token registration. Don't forget to handle errors as well. (See function below)
+        // Do what you want with it
+        NSLog(@"TOKEN Registration Successful");
+        [AFAppBoosterSDK registerPushToken:deviceToken];
+        [AFAppBoosterSDK handleBadgeCountLocallyAndRemotely:YES];
      */
-    
-    [AFAppBoosterSDK registerPushToken:deviceToken];
-    [AFAppBoosterSDK handleBadgeCountLocallyAndRemotely:YES];
-    
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"Failed to register for remote notifications. Make sure you're set up correctly in the Mobile Provisioning section of iTunes Connect.");
-    
-    // In this scenario, you can resort to handling the badge count locally or not at all.
-    [AFAppBoosterSDK handleBadgeCountLocally:YES];
+    /*
+        NSLog(@"Failed to register for remote notifications. Make sure you're set up correctly in the Mobile Provisioning section of iTunes Connect.");
+        
+        [[[[UIAlertView alloc] initWithTitle:@"WARNING" message:@"This build failed to register for remote notifications." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
+        
+        // In this scenario, you can resort to handling the badge count locally or not at all.
+        [AFAppBoosterSDK handleBadgeCountLocally:YES];
+     */
 }
 
 - (IBAction)forceOpenNotificationWindow

@@ -32,6 +32,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface AFAppBoosterSDK : NSObject {}
 
@@ -97,5 +98,17 @@
 
 // Register APNS (push token)
 + (void)registerPushToken:(NSData *)deviceToken;
+
+// Pause refresh timer
++ (void)pause;
+
+// Resume refresh time
++ (void)resume;
+
+// v1.1.4 - Sets application delegate when Appbooster calls one
++ (void)setApplicationDelegate:(id)delegate;
+
+// v1.1.4 - Opens the SDK to a specific notification ID. Calls "- (void)SDKopenNotificationResult:(NSString *)response" on delegate set by "setApplicationDelegate" if it exists
++ (void)openSDKNotificationID:(int)notificationID;
 
 @end

@@ -128,7 +128,7 @@
 
 
 
- 
+
 
 // Draws the Badge with Quartz
 -(void) drawRoundedRectWithContext:(CGContextRef)context withRect:(CGRect)rect
@@ -141,7 +141,7 @@
 	CGFloat maxY = CGRectGetMaxY(rect) - puffer;
 	CGFloat minX = CGRectGetMinX(rect) + puffer;
 	CGFloat minY = CGRectGetMinY(rect) + puffer;
-		
+    
     
     CGContextBeginPath(context);
 	CGContextSetFillColorWithColor(context, [self.badgeInsetColor CGColor]);
@@ -152,16 +152,16 @@
 	// CGContextSetShadowWithColor(context, CGSizeMake(1.0,1.0), 3, [[UIColor blackColor] CGColor]);
 	CGContextClosePath(context);
     CGContextFillPath(context);
-
+    
 	CGContextRestoreGState(context);
-
+    
 }
 
 // Draws the Badge Shine with Quartz
 -(void) drawShineWithContext:(CGContextRef)context withRect:(CGRect)rect
 {
 	CGContextSaveGState(context);
- 
+    
 	CGFloat radius = CGRectGetMaxY(rect)*self.badgeCornerRoundness;
 	CGFloat puffer = CGRectGetMaxY(rect)*0.10;
 	CGFloat maxX = CGRectGetMaxX(rect) - puffer;
@@ -180,7 +180,7 @@
 	size_t num_locations = 2;
 	CGFloat locations[2] = { 0.0, 0.4 };
 	CGFloat components[8] = {  0.92, 0.92, 0.92, 1.0, 0.82, 0.82, 0.82, 0.4 };
-
+    
 	CGColorSpaceRef cspace;
 	CGGradientRef gradient;
 	cspace = CGColorSpaceCreateDeviceRGB();

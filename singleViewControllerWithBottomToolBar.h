@@ -14,4 +14,6 @@
 
 @property (nonatomic, retain) UIToolbar *toolbar;
 
+- (void)appboosterIsInitialized;
+
 @end
