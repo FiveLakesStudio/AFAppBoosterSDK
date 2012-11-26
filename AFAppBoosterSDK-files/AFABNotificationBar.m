@@ -119,7 +119,7 @@ void drawGlossAndGradient(CGContextRef context,
         
         // Add notification count label
         notificationCountLabel = [[UILabel alloc] init];
-        [notificationCountLabel setTextAlignment:UITextAlignmentCenter];
+        [notificationCountLabel setTextAlignment:NSTextAlignmentCenter];
         [notificationCountLabel setTextColor:darkColor];
         [notificationCountLabel setAdjustsFontSizeToFitWidth:YES];
         [notificationCountLabel setBackgroundColor:[UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.9f]];
