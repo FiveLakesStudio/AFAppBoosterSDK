@@ -111,4 +111,8 @@
 // v1.1.4 - Opens the SDK to a specific notification ID. Calls "- (void)SDKopenNotificationResult:(NSString *)response" on delegate set by "setApplicationDelegate" if it exists
 + (void)openSDKNotificationID:(int)notificationID;
 
+// v1.1.5 - Remove "Send Feedback" button
++ (void)showFeedbackButton:(BOOL)yesOrNo;   // Defaults to YES
+
+
 @end

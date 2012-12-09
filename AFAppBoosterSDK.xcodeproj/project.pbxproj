@@ -35,7 +35,7 @@
 		01CEE7E9143DB2FA000FF737 /* singleViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEE7E7143DB2FA000FF737 /* singleViewController_iPad.xib */; };
 		01CEE7F5143DBA03000FF737 /* singleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01CEE7F3143DBA03000FF737 /* singleViewController.m */; };
 		01CEE7F6143DBA03000FF737 /* singleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01CEE7F4143DBA03000FF737 /* singleViewController.xib */; };
-		01FE9E5116308489004CAD5D /* libAppboosterSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01FE9E5016308489004CAD5D /* libAppboosterSDK.a */; };
+		01F24655166930010057B756 /* libAppboosterSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01F24654166930010057B756 /* libAppboosterSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,7 +79,7 @@
 		01CEE7F2143DBA02000FF737 /* singleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = singleViewController.h; sourceTree = "<group>"; };
 		01CEE7F3143DBA03000FF737 /* singleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = singleViewController.m; sourceTree = "<group>"; };
 		01CEE7F4143DBA03000FF737 /* singleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = singleViewController.xib; sourceTree = "<group>"; };
-		01FE9E5016308489004CAD5D /* libAppboosterSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppboosterSDK.a; sourceTree = "<group>"; };
+		01F24654166930010057B756 /* libAppboosterSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppboosterSDK.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 				01B1D06B1394F3460031022B /* UIKit.framework in Frameworks */,
 				01B1D06D1394F3470031022B /* Foundation.framework in Frameworks */,
 				01B1D06F1394F3470031022B /* CoreGraphics.framework in Frameworks */,
-				01FE9E5116308489004CAD5D /* libAppboosterSDK.a in Frameworks */,
+				01F24655166930010057B756 /* libAppboosterSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +103,7 @@
 		011CB40114449D8D00FA5BEC /* AFAppBoosterSDK-files */ = {
 			isa = PBXGroup;
 			children = (
-				01FE9E5016308489004CAD5D /* libAppboosterSDK.a */,
+				01F24654166930010057B756 /* libAppboosterSDK.a */,
 				01B7D2B9152066A7001EFB4B /* AFAppBoosterSDK.h */,
 				011CB40214449D8D00FA5BEC /* AFABNotificationBar.h */,
 				011CB40314449D8D00FA5BEC /* AFABNotificationBar.m */,
@@ -298,7 +298,10 @@
 		01B1D0851394F3470031022B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -308,7 +311,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-all_load",
 					"-ObjC",
@@ -324,15 +327,21 @@
 		01B1D0861394F3470031022B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
+				"ARCHS[sdk=*]" = (
+					"$(ARCHS_STANDARD_32_BIT)",
+					armv6,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicolas Jouannem";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				"OTHER_LDFLAGS[arch=*]" = (
@@ -362,7 +371,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFAppBoosterSDK-Prefix.pch";
 				INFOPLIST_FILE = "AFAppBoosterSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -390,7 +399,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AFAppBoosterSDK-Prefix.pch";
 				INFOPLIST_FILE = "AFAppBoosterSDK-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

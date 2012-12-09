@@ -60,7 +60,8 @@
     
     
     // MANDATORY - YOU MUST CALL THIS CODE HERE
-    NSString *apiKey = @"INSERT YOUR API KEY HERE";
+    
+   NSString *apiKey = @"INSERT API KEY HERE";
     
     if ([AFAppBoosterSDK connectWithAPIKey:apiKey afterDelay:0.5])
         NSLog(@"Appsfire Appbooster Demo App launched with %@",[AFAppBoosterSDK getAFSDKVersionInfo]);
@@ -159,6 +160,18 @@
         ie/ [AFAppBoosterSDK setUserEmail:nil isModifiable:YES];
      
      */
+    
+    /*
+        If you use PTAs, add this code
+    */
+    NSDictionary *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (notification)
+    {
+        if ( [notification objectForKey:@"ab_notid"] && [[notification objectForKey:@"ab_notid"] respondsToSelector:@selector(intValue)] )
+        {
+            [AFAppBoosterSDK openSDKNotificationID:[[notification objectForKey:@"ab_notid"] intValue]];
+        }
+    }
 
     return YES;
 }
@@ -184,6 +197,24 @@
         [AFAppBoosterSDK handleBadgeCountLocally:YES];
      */
 }
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    if ( [userInfo objectForKey:@"ab_notid"] && [[userInfo objectForKey:@"ab_notid"] respondsToSelector:@selector(intValue)] )
+    {
+        [AFAppBoosterSDK openSDKNotificationID:[[userInfo objectForKey:@"ab_notid"] intValue]];
+    }
+} // application:didReceiveNotification
+
+- (void)SDKopenNotificationResult:(NSString *)response
+{
+    NSLog(@"Recieved response from SDK : %@", response);
+    
+    // AFSDK:PUSH:NOTIFICATION_ABSENT   means that the SDK did not load the Notification that was pushed after 30 seconds and will not continue trying
+    // AFSDK:PUSH:NOTIFICATION_OPENED   means that the SDK opened the message
+    
+} // SDKopenNotificationResult
+
 
 - (IBAction)forceOpenNotificationWindow
 {
