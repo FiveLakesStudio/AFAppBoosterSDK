@@ -94,7 +94,11 @@
     CGFloat origWidth = badgeBaseSize.width;
     CGFloat origHeight = badgeBaseSize.height;
     
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdeprecated"
 	CGSize stringSize = [badgeString sizeWithFont:[UIFont boldSystemFontOfSize:6]];
+    #pragma clang diagnostic pop
+
 	CGFloat flexSpace;
 	if ([badgeString length]>=2) {
 		flexSpace = [badgeString length];
@@ -247,9 +251,13 @@
 		if ([self.badgeText length]<2) {
 			sizeOfFont += sizeOfFont*0.20;
 		}
+        
 		UIFont *textFont = [UIFont boldSystemFontOfSize:sizeOfFont];
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated"
 		CGSize textSize = [self.badgeText sizeWithFont:textFont];
 		[self.badgeText drawAtPoint:CGPointMake((rect.size.width/2-textSize.width/2), (rect.size.height/2-textSize.height/2)) withFont:textFont];
+        #pragma clang diagnostic pop
 	}
 	
 }
