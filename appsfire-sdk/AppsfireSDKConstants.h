@@ -1,7 +1,7 @@
 /*!
  *  @header    AppsfireSDKConstants.h
  *  @abstract  Appsfire SDK Constants Header
- *  @version   2.0
+ *  @version   2.1.0
  */
 
 /*!
@@ -9,27 +9,27 @@
  *  @since 2.0
  */
 
-// sdk is initializing
+/** @notification EngageNotification sdk is initializing */
 #define kAFSDKIsInitializing                @"AFSDKisInitializing"
 
-// sdk is initialized
+/** @notification EngageNotification sdk is initialized */
 #define kAFSDKIsInitialized                 @"AFSDKisInitialized"
 
-// notifications count was updated
+/** @notification EngageNotification notifications count was updated */
 #define kAFSDKNotificationsNumberChanged    @"AFSDKNotificationsNumberChanged"
 
-// dictionary (localized strings) is updated
+/** @notification EngageNotification dictionary (localized strings) is updated */
 #define kAFSDKDictionaryUpdated             @"AFSDKdictionaryUpdated"
 
-// panel (for notifications or feedback) was presented
+/** @notification EngageNotification panel (for notifications or feedback) was presented */
 #define kAFSDKPanelWasPresented             @"AFSDKPanelWasPresented"
 
-// panel (for notifications or feedback) was dismissed
+/** @notification EngageNotification panel (for notifications or feedback) was dismissed */
 #define kAFSDKPanelWasDismissed             @"AFSDKPanelWasDismissed"
 
 
 /*!
- *  @brief Enum for deciding appsfire sdk presentation style
+ *  @enum EngageEnum Enum for deciding appsfire sdk presentation style
  *
  *  @note Embedded display allows users to see your application behind.
  *  Fullscreen is like its name, users won't see your application and will be immersed into the sdk.
@@ -37,43 +37,70 @@
  *  @since 2.0
  */
 typedef NS_ENUM(NSUInteger, AFSDKPanelStyle) {
-    AFSDKPanelStyleDefault,         // display on part of the screen so your app is visible behind
-    AFSDKPanelStyleFullscreen       // display on the whole screen (iPhone/iPod only)
+    /** display on part of the screen so your app is visible behind */
+    AFSDKPanelStyleDefault,
+    /** display on the whole screen (iPhone/iPod only) */
+    AFSDKPanelStyleFullscreen
 };
 
 
 /*!
- *  @brief Enum for deciding appsfire sdk content type
+ *  @enum EngageEnum Enum for deciding appsfire sdk content type
+ *  @since 2.0
  *
  *  @note Default displays by default the notifications, but the user can send a feedback too thanks to a button.
  *  'Feedback only' will directly display the feedback form, user won't be able to see notifications list.
- *
- *  @since 2.0
  */
 typedef NS_ENUM(NSUInteger, AFSDKPanelContent) {
-    AFSDKPanelContentDefault,       // display notifications wall
-    AFSDKPanelContentFeedbackOnly   // display the feedback form only
+    /** display notifications wall */
+    AFSDKPanelContentDefault,
+    /** display the feedback form only */
+    AFSDKPanelContentFeedbackOnly
 };
 
 
 /*!
- *  @brief Enum for sdk error code.
+ *  @enum AdvertisingEnum Enum for specifying the modal type
+ *  @since 2.1
+ */
+typedef NS_ENUM(NSUInteger, AFAdSDKModalType) {
+    /** a native fullscreen ad */
+    AFAdSDKModalTypeSushi = 0,
+    /** an interstitial, with experience similar to the task manager in iOS7, except it happens within the publisher app */
+    AFAdSDKModalTypeUraMaki = 1
+};
+
+
+/*!
+ *  @enum CommonEnum Enum for sdk error code.
  *  @since 2.0
  */
 typedef NS_ENUM(NSUInteger, AFSDKErrorCode) {
-    // base sdk
-    AFSDKErrorCodeUnknown,                              // unknown
-    AFSDKErrorCodeLibraryNotInitialized,                // library isn't initialized yet
-    AFSDKErrorCodeInternetNotReachable,                 // internet isn't reachable (and is required)
-    AFSDKErrorCodeNeedsApplicationDelegate,             // you need to set the application delegate to proceed
-    // advertising sdk / requesting a modal ad
-    AFSDKErrorCodeAdvertisingNoAd,                      // no ad available
-    AFSDKErrorCodeAdvertisingBadCall,                   // the request call isn't appropriate
-    AFSDKErrorCodeAdvertisingAlreadyDisplayed,          // an ad is currently displayed for this format
-    AFSDKErrorCodeAdvertisingCanceledByDevelopper,      // the request was canceled by the developer
-    // base sdk / presenting panel
-    AFSDKErrorCodePanelAlreadyDisplayed,                // the panel is already displayed
-    // base sdk / open notification
-    AFSDKErrorCodeOpenNotificationNotFound              // the notification wasn't found
+    
+    // general
+    /** unknown */
+    AFSDKErrorCodeUnknown,
+    /** library isn't initialized yet */
+    AFSDKErrorCodeLibraryNotInitialized,
+    /** internet isn't reachable (and is required) */
+    AFSDKErrorCodeInternetNotReachable,
+    /** you need to set the application delegate to proceed */
+    AFSDKErrorCodeNeedsApplicationDelegate,
+    
+    // advertising sdk
+    /** no ad available */
+    AFSDKErrorCodeAdvertisingNoAd,
+    /** the request call isn't appropriate */
+    AFSDKErrorCodeAdvertisingBadCall,
+    /** an ad is currently displayed for this format */
+    AFSDKErrorCodeAdvertisingAlreadyDisplayed,
+    /** the request was canceled by the developer */
+    AFSDKErrorCodeAdvertisingCanceledByDevelopper,
+    
+    // engage sdk
+    /** the panel is already displayed */
+    AFSDKErrorCodePanelAlreadyDisplayed,
+    /** the notification wasn't found */
+    AFSDKErrorCodeOpenNotificationNotFound
     
 };

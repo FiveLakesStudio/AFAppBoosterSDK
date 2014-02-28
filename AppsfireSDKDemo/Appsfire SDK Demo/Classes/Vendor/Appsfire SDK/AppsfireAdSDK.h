@@ -1,7 +1,7 @@
 /*!
  *  @header    AppsfireAdSDK.h
  *  @abstract  Appsfire Advertising SDK Header
- *  @version   2.0
+ *  @version   2.1.1
  */
 
 #import <UIKit/UIKit.h>
@@ -9,7 +9,7 @@
 #import "AppsfireSDKConstants.h"
 
 /*!
- *  Ad Unit main protocol. Provides various events about library life and ads.
+ *  Advertising SDK protocol. Provides various events about library life and ads.
  */
 @protocol AppsfireAdSDKDelegate <NSObject>
 
@@ -39,6 +39,8 @@
 /*!
  *  @brief Called when a modal ad failed to present.
  *  You can use the code in the NSError to analyze precisely what went wrong.
+ *
+ *  @param error The error object filled with the appropriate 'code' and 'localizedDescription'.
  */
 - (void)modalAdRequestDidFailWithError:(NSError *)error;
 
@@ -68,7 +70,7 @@
 
 
 /*!
- *  Ad Unit top-level class.
+ *  Advertising SDK top-level class.
  */
 @interface AppsfireAdSDK : NSObject
 
@@ -145,10 +147,11 @@
  *  @note If the library isn't initialized, or if the ads aren't loaded yet, then the request will be added to a queue and treated as soon as possible.
  *  You cannot request two ad modals at the same time. In the case where you already have a modal request in the queue, the previous one will be canceled.
  *
+ *  @param modalType The kind of modal you want to request.
  *  @param controller A controller that will be used to display the various components. We recommend you specify the root controller or your application.
  *  If you don't specify a controller, the request will be aborted.
  */
-+ (void)requestModalAdWithController:(UIViewController *)controller;
++ (void)requestModalAd:(AFAdSDKModalType)modalType withController:(UIViewController *)controller;
 
 /*!
  *  @brief Ask if ads are loaded and if there is at least one modal ad available
@@ -156,9 +159,12 @@
  *  @note If ads aren't downloaded yet, then the method will return `NO`.
  *  To test the library, and then have a positive response, please use the "debug" mode.
  *
+ *  @param modalType The kind of modal you want to check.
+ *  Note that most of ads should be available for both formats.
+ *
  *  @return `YES` if ads are loaded and if there is at least one modal ad available, `NO` otherwise.
  */
-+ (BOOL)isThereAModalAdAvailable;
++ (BOOL)isThereAModalAdAvailable:(AFAdSDKModalType)modalType;
 
 /*!
  *  @brief Cancel any pending ad modal request you have made in the past.
@@ -181,10 +187,10 @@
  *  Methods that you should stop using, and that will be removed in future release
  */
 
-/*!
- *  @note Since the merge with AppsfireSDK, we suggest you to use "getAFSDKVersionInfo" of AppsfireSDK.
- */
++ (NSString *)getAdUnitVersion __deprecated_msg("Since the merge with AppsfireSDK, we suggest you to use 'getAFSDKVersionInfo' of AppsfireSDK.");
 
-+ (NSString *)getAdUnitVersion __deprecated;
++ (void)requestModalAdWithController:(UIViewController *)controller __deprecated_msg("You can now specify the modal type. Please check 'requestModalAd:withController:' method.");
+
++ (BOOL)isThereAModalAdAvailable __deprecated_msg("You can now specify the modal type. Please check 'isThereAModalAdAvailable:' method.");
 
 @end

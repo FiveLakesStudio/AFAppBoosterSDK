@@ -28,10 +28,10 @@
 @interface AFBadgeView : UIControl
 
 // The background view of the badge
-@property (nonatomic) UIView *backgroundView;
+@property (nonatomic, strong) UIView *backgroundView;
 
 // The label which displays the count value
-@property (nonatomic) UILabel *textLabel;
+@property (nonatomic, strong) UILabel *textLabel;
 
 // Count value which is displayed in the badge
 @property (nonatomic, assign, readonly) NSUInteger count;

@@ -12,6 +12,4 @@
 
 @interface AFSDKTableViewController : UITableViewController
 
-@property (nonatomic, strong) AFSDKOptionsTableViewController *appsfireSDKTableViewController;
-
 @end

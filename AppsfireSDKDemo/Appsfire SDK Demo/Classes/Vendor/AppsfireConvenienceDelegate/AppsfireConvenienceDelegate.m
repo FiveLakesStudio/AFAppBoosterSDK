@@ -1,7 +1,7 @@
 /*!
  *  @header    AppsfireConvenienceDelegate.m
  *  @abstract  Appsfire SDK integration class
- *  @version   1.0
+ *  @version   1.0.1
  */
 
 /*
@@ -58,11 +58,11 @@
 // Use of the Appsfire Ad SDK. (default is `YES`)
 #define AFSDK_ENABLE_ADS            YES
 
-// Use of automatic advertisement display when an ad is available. (default is `YES`)
+// Use of automatic advertisement display when an ad is available. The format used is Sushi. (default is `YES`)
 #define AFSDK_AUTOMATIC_AD_DISPLAY  YES
 
 // Debug mode, allows you to see, allows you to see example of ads examples.  (default is `NO`)
-#define AFSDK_AD_DEBUG              NO
+#define AFSDK_AD_DEBUG              YES
 
 /*!
  *  @brief Enum for deciding badge handling mode
@@ -182,13 +182,13 @@ typedef NS_ENUM(NSUInteger, AFSDKBadgeHandling) {
         // If automatic advertisement display is enabled.
         if (AFSDK_AUTOMATIC_AD_DISPLAY) {
             
-            if ([AppsfireAdSDK isThereAModalAdAvailable] && ![AppsfireAdSDK isModalAdDisplayed]) {
+            if ([AppsfireAdSDK isThereAModalAdAvailable:AFAdSDKModalTypeSushi] && ![AppsfireAdSDK isModalAdDisplayed]) {
                 
                 // Try to show an interstitial after a slight delay
                 double delayInSeconds = 0.5;
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [AppsfireAdSDK requestModalAdWithController:[UIApplication sharedApplication].keyWindow.rootViewController];
+                    [AppsfireAdSDK requestModalAd:AFAdSDKModalTypeSushi withController:[UIApplication sharedApplication].keyWindow.rootViewController];
                 });
             }
         }
@@ -257,7 +257,9 @@ typedef NS_ENUM(NSUInteger, AFSDKBadgeHandling) {
 
 - (void)modalAdIsReadyForRequest {
     AFSDKLog(@"%s (mainThread=%d)", __PRETTY_FUNCTION__, [NSThread isMainThread]);
-    
+
+    // If you want to show ads as soon as they are ready, uncomment the following lines.
+    /*
     // If advertisement is active.
     if (AFSDK_ENABLE_ADS) {
         
@@ -269,6 +271,7 @@ typedef NS_ENUM(NSUInteger, AFSDKBadgeHandling) {
             }
         }
     }
+     */
 }
 
 - (BOOL)shouldDisplayModalAd {

@@ -238,11 +238,10 @@ static NSString * const kAFNotificationBarNewNotifications = @"You have new noti
     [self removeObservers];
     
     // Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:@"AFSDKisInitialized" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:@"AFNotificationsHaveBeenLoaded" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:@"AFNotificationsHaveBeenUnLoaded" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTitleLabel:) name:@"AFNotificationNotificationsCounterNeedsUpdate" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:@"AFSDKdictionaryUpdated" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:kAFSDKIsInitialized object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:kAFSDKPanelWasPresented object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:kAFSDKPanelWasDismissed object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTitleLabel:) name:kAFSDKNotificationsNumberChanged object:nil];
 }
 
 - (void)removeObservers {

@@ -1,7 +1,7 @@
 /*!
  *  @header    AppsfireSDK.h
  *  @abstract  Appsfire iOS SDK Header
- *  @version   2.0
+ *  @version   2.1.1
  */
 
 /*
@@ -34,7 +34,7 @@
 #import "AppsfireSDKConstants.h"
 
 /*!
- *  Appsfire SDK main protocol.
+ *  Appsfire SDK protocol.
  */
 @protocol AppsfireSDKDelegate <NSObject>
 
@@ -42,10 +42,11 @@
 
 /*!
  *  @brief For when the SDK controller has explicitly been asked to be dismissed (e.g., from an end user action)
+ *  @since 2.0
  *
  *  @note If you don't take this message into account, nothing will happen on UI.
  *
- *  @since 2.0
+ *  @param controller A pointer to the UIViewController which should be dismissed.
  */
 - (void)panelViewControllerNeedsToBeDismissed:(UIViewController *)controller;
 
@@ -231,7 +232,7 @@
  *  @brief Send data to SDK in key/value pairs. Strings matching any of your [KEYS] will be replaced by the respective value you send.
  *  @since 2.0
  *
- *  @param customValues A dictionary containing the keys/values to replace. (See documentation for example)
+ *  @param keyValues A dictionary containing the keys/values to replace. (See documentation for example)
  */
 + (void)setCustomKeysValues:(NSDictionary *)keyValues;
 
@@ -252,9 +253,9 @@
  *  @brief Allow you to display or hide feedback button.
  *  @since 1.1.5
  *
- *  @param showButton The boolean to tell if feedback button should be displayed or not. Default value is `YES`.
+ *  @param show The boolean to tell if feedback button should be displayed or not. Default value is `YES`.
  */
-+ (void)showFeedbackButton:(BOOL)showButton;
++ (void)setShowFeedbackButton:(BOOL)show;
 
 
 /** @name Getters
@@ -299,50 +300,24 @@
  *  Methods that you should stop using, and that will be removed in future release
  */
 
-/*!
- *  @brief This method was removed from our sdk. If you feel you need it at some point, please contact us and we'll find a solution for your problem.
- *  Eventually consider using `pause` and `resume` methods.
- */
-+ (void)abortInitialization __deprecated;
++ (NSString *)openUDID __deprecated_msg("This method is retuning the OpenUDID. As OpenUDID is now deprecated, we are removing this method.");
 
-/*!
- *  @brief This method is retuning the OpenUDID. As OpenUDID is now deprecated, we are removing this method.
- */
-+ (NSString *)openUDID __deprecated;
++ (void)useFullScreenStyle __deprecated_msg("This method is deprecated. You need to specify the presentation style in the present method.");
 
-/*!
- *  @brief This method is deprecated. You need to specify the presentation style in the present method.
- */
-+ (void)useFullScreenStyle __deprecated;
++ (void)presentNotifications __deprecated_msg("This method is deprecated and you should use 'presentPanelForContent:withStyle:' method instead.");
 
-/*!
- *  @brief This method is deprecated and you should use 'presentPanelForContent:withStyle:' method instead.
- */
-+ (void)presentNotifications __deprecated;
++ (void)presentFeedback __deprecated_msg("This method is deprecated and you should use 'presentPanelForContent:withStyle:' method instead.");
 
-/*!
- *  @brief This method is deprecated and you should use 'presentPanelForContent:withStyle:' method instead.
- */
-+ (void)presentFeedback __deprecated;
++ (void)closeNotifications __deprecated_msg("This method is deprecated and you should use 'dismissPanel' method instead.");
 
-/*!
- *  @brief This method is deprecated and you should use 'dismissPanel' method instead.
- */
-+ (void)closeNotifications __deprecated;
++ (void)setApplicationDelegate:(id<AppsfireSDKDelegate>)delegate __deprecated_msg("The method was renamed for consistency. Please use 'setDelegate:' instead.");
 
-/*!
- *  @brief We renamed this method, please use 'setDelegate:' instead.
- */
-+ (void)setApplicationDelegate:(id<AppsfireSDKDelegate>)delegate __deprecated;
++ (void)useGradients:(NSArray *)gradients __deprecated_msg("This method is deprecated and you should use 'setBackgroundColor:textColor:' method instead.");
 
-/*!
- *  @brief This method is deprecated and you should use 'setBackgroundColor:textColor:' method instead.
- */
-+ (void)useGradients:(NSArray *)gradients __deprecated;
++ (void)useCustomValues:(NSDictionary *)customValues __deprecated_msg("This method is deprecated and you should use 'setCustomKeysValues:' method instead.");
 
-/*!
- *  @brief This method is deprecated and you should use 'setCustomKeysValues:' method instead.
- */
-+ (void)useCustomValues:(NSDictionary *)customValues __deprecated;
++ (void)showFeedbackButton:(BOOL)showButton __deprecated_msg("The method was renamed for consistency. Please use 'setShowFeedbackButton:' instead.");
+
++ (void)setUseStoreKitWheneverPossibleWithHostController:(UIViewController *)hostController __deprecated_msg("The method was removed.");
 
 @end

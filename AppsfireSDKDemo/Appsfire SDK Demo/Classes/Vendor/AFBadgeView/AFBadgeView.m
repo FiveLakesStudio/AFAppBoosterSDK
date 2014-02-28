@@ -104,7 +104,8 @@ static CGFloat const kAFBadgeViewFontRatio = 2.2;
     _textLabel = [[UILabel alloc] init];
     _textLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
     _textLabel.textAlignment = UITextAlignmentCenter;
-    
+    _textLabel.text = @"0";
+
     // By defaul the text color is white
     _textLabel.textColor = [UIColor whiteColor];
     
@@ -119,8 +120,8 @@ static CGFloat const kAFBadgeViewFontRatio = 2.2;
     [self addSubview:_textLabel];
     
     // Notifications / Callbacks to update the badge
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:@"AFSDKisInitialized" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBadgeCount) name:@"AFNotificationNotificationsCounterNeedsUpdate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateState) name:kAFSDKIsInitialized object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBadgeCount) name:kAFSDKNotificationsNumberChanged object:nil];
 }
 
 #pragma mark - Layout

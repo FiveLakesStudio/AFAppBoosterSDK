@@ -10,14 +10,18 @@
 
 #import "AppsfireAdSDK.h"
 #import "AFSDKOptionsTableViewController.h"
+#import "AFAdSDKOptionsTableViewController.h"
 
-typedef NS_ENUM(NSUInteger, AppsfireSDKRow) {
-    AppsfireSDKRowSDK = 0,
-    AppsfireSDKRowAdSDK,
-    AppsfireSDKRowNum
+typedef NS_ENUM(NSUInteger, AppsfireSDKSections) {
+    AppsfireSDKSectionsSDK = 0,
+    AppsfireSDKSectionsAdSDK,
+    AppsfireSDKSectionsNum
 };
 
 @interface AFSDKTableViewController ()
+
+@property (nonatomic, strong) AFSDKOptionsTableViewController *sdkTableViewController;
+@property (nonatomic, strong) AFAdSDKOptionsTableViewController *adSdkTableViewController;
 
 @end
 
@@ -42,11 +46,11 @@ typedef NS_ENUM(NSUInteger, AppsfireSDKRow) {
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return AppsfireSDKSectionsNum;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return AppsfireSDKRowNum;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,15 +76,15 @@ typedef NS_ENUM(NSUInteger, AppsfireSDKRow) {
     cell.detailTextLabel.numberOfLines = 0;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    switch (indexPath.row) {
-        case AppsfireSDKRowSDK: {
+    switch (indexPath.section) {
+        case AppsfireSDKSectionsSDK: {
             cell.textLabel.text = @"Appsfire SDK";
             cell.detailTextLabel.text = @"See examples of the presentation styles and some provided UI elements.";
         } break;
             
-        case AppsfireSDKRowAdSDK: {
+        case AppsfireSDKSectionsAdSDK: {
             cell.textLabel.text = @"Appsfire Ad SDK";
-            cell.detailTextLabel.text = @"See examples of the Ad overlay if available.";
+            cell.detailTextLabel.text = @"Test examples of the Ad overlays.";
         } break;
             
         default:
@@ -93,20 +97,16 @@ typedef NS_ENUM(NSUInteger, AppsfireSDKRow) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    switch (indexPath.row) {
+    switch (indexPath.section) {
             
-        case AppsfireSDKRowSDK: {
-            self.appsfireSDKTableViewController = [[AFSDKOptionsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            [self.navigationController pushViewController:self.appsfireSDKTableViewController animated:YES];
+        case AppsfireSDKSectionsSDK: {
+            self.sdkTableViewController = [[AFSDKOptionsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:self.sdkTableViewController animated:YES];
         } break;
             
-        case AppsfireSDKRowAdSDK: {
-            
-            // Tries to show an interstitial
-            [AppsfireAdSDK requestModalAdWithController:[UIApplication sharedApplication].keyWindow.rootViewController];
-            
-            // Or you can simply use your current view controller
-            // [AppsfireAdSDK requestModalAdWithController:self];
+        case AppsfireSDKSectionsAdSDK: {
+            self.adSdkTableViewController = [[AFAdSDKOptionsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            [self.navigationController pushViewController:self.adSdkTableViewController animated:YES];
         } break;
             
         default:
