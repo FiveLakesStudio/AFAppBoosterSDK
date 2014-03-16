@@ -1,7 +1,7 @@
 /*!
  *  @header    AppsfireSDK.h
  *  @abstract  Appsfire iOS SDK Header
- *  @version   2.1.1
+ *  @version   2.2.0
  */
 
 /*
@@ -92,6 +92,19 @@
 + (BOOL)connectWithAPIKey:(NSString *)key afterDelay:(NSTimeInterval)delay;
 
 /*!
+ *  @brief Define the features you want to use in Appsfire SDK.
+ *  @since 2.2.0
+ *
+ *  @note Defining this property will allow us to avoid unnecessary library process and web-services calls.
+ *  For example, if you only use the Monetization SDK (AppsfireAdSDK), then you could set `AFSDKFeatureMonetization`.
+ *
+ *  @warning Don't touch this property if you aren't 100% sure about what you're doing.
+ *
+ *  @param features Features defined by a bitmask. You can enable one or more features. By default 'Engage' and 'Monetization' features are enabled.
+ */
++ (void)setFeatures:(AFSDKFeature)features;
+
+/*!
  *  @brief Sets delegate when Appsfire SDK calls one.
  *  @since 1.1.4
  *
@@ -139,7 +152,7 @@
  *  @brief Handle the badge count for this app locally (only on the device and only while the app is alive).
  *  @since 1.0.3
  *
- *  @note Note that <handleBadgeCountLocally> overrides any settings established by <handleBadgeCountLocallyAndRemotely>, and vice versa.
+ *  @note Note that `handleBadgeCountLocally` overrides any settings established by `handleBadgeCountLocallyAndRemotely`, and vice versa.
  *
  *  @param handleLocally A boolean to determine if the badge count should be handled locally.
  */
@@ -149,7 +162,7 @@
  *  @brief Handle the badge count for this app remotely (Appsfire SDK will update the icon at all times, locally and remotely, even when app is closed).
  *  @since 1.0.3
  *
- *  @note Note that <handleBadgeCountLocallyAndRemotely> overrides any settings established by <handleBadgeCountLocally>.
+ *  @note Note that `handleBadgeCountLocallyAndRemotely` overrides any settings established by `handleBadgeCountLocally`.
  *  @note IMPORTANT: If you set this option to YES, you need to provide us with your Push Certificate.
  *  For more information, visit your "Manage Apps" section on http://dashboard.appsfire.com/app/manage
  *
@@ -206,7 +219,7 @@
  *  @brief Opens the SDK to a specific notification ID.
  *  @since 1.1.4
  *
- *  @note Calls "SDKopenNotificationResult:" on delegate set by "setApplicationDelegate" if it exists.
+ *  @note Calls "SDKopenNotificationResult:" on delegate set by "setDelegate" if it exists.
  *
  *  @param notificationID The notification ID you would like to open. Generally this ID is sent via a push to your app.
  */
@@ -275,7 +288,7 @@
  *  @return Return an integer that represent the number of unread notifications.
  *  If SDK isn't initialized, this number will be 0.
  */
-+ (NSInteger)numberOfPendingNotifications;
++ (NSUInteger)numberOfPendingNotifications;
 
 /*!
  *  @brief Returns an SDK sessionID.
@@ -294,30 +307,5 @@
  *  @note This includes messages that have been read, icon images, assets, etc. DO NOT USE LIGHTLY! If you're having an issue that only this seems to solve, please contact us immediately : app-support@appsfire.com
  */
 + (void)resetCache;
-
-
-/** @name Deprecated
- *  Methods that you should stop using, and that will be removed in future release
- */
-
-+ (NSString *)openUDID __deprecated_msg("This method is retuning the OpenUDID. As OpenUDID is now deprecated, we are removing this method.");
-
-+ (void)useFullScreenStyle __deprecated_msg("This method is deprecated. You need to specify the presentation style in the present method.");
-
-+ (void)presentNotifications __deprecated_msg("This method is deprecated and you should use 'presentPanelForContent:withStyle:' method instead.");
-
-+ (void)presentFeedback __deprecated_msg("This method is deprecated and you should use 'presentPanelForContent:withStyle:' method instead.");
-
-+ (void)closeNotifications __deprecated_msg("This method is deprecated and you should use 'dismissPanel' method instead.");
-
-+ (void)setApplicationDelegate:(id<AppsfireSDKDelegate>)delegate __deprecated_msg("The method was renamed for consistency. Please use 'setDelegate:' instead.");
-
-+ (void)useGradients:(NSArray *)gradients __deprecated_msg("This method is deprecated and you should use 'setBackgroundColor:textColor:' method instead.");
-
-+ (void)useCustomValues:(NSDictionary *)customValues __deprecated_msg("This method is deprecated and you should use 'setCustomKeysValues:' method instead.");
-
-+ (void)showFeedbackButton:(BOOL)showButton __deprecated_msg("The method was renamed for consistency. Please use 'setShowFeedbackButton:' instead.");
-
-+ (void)setUseStoreKitWheneverPossibleWithHostController:(UIViewController *)hostController __deprecated_msg("The method was removed.");
 
 @end
