@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BE61D4718FBEDAA0097937A /* ExampleUdonNoodleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BE61D4618FBEDAA0097937A /* ExampleUdonNoodleTableViewController.m */; };
 		BF20A9EB18A10A9600863F6A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF20A9E818A10A9600863F6A /* AppDelegate.m */; };
 		BF20A9EF18A10ACB00863F6A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF20A9EE18A10ACB00863F6A /* MainViewController.m */; };
 		BF20A9F518A10BA400863F6A /* libAppsfireSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF20A9F418A10BA400863F6A /* libAppsfireSDK.a */; };
@@ -45,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B6B1B70190E63F500549386 /* AFAdSDKUdonNoodleControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFAdSDKUdonNoodleControl.h; sourceTree = "<group>"; };
+		7BE61D4518FBEDAA0097937A /* ExampleUdonNoodleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExampleUdonNoodleTableViewController.h; path = Classes/ExampleUdonNoodleTableViewController.h; sourceTree = "<group>"; };
+		7BE61D4618FBEDAA0097937A /* ExampleUdonNoodleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExampleUdonNoodleTableViewController.m; path = Classes/ExampleUdonNoodleTableViewController.m; sourceTree = "<group>"; };
 		BF20A9E718A10A9600863F6A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		BF20A9E818A10A9600863F6A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		BF20A9ED18A10ACB00863F6A /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
@@ -122,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BE61D4418FBED9B0097937A /* Udon Noodle */ = {
+			isa = PBXGroup;
+			children = (
+				7BE61D4518FBEDAA0097937A /* ExampleUdonNoodleTableViewController.h */,
+				7BE61D4618FBEDAA0097937A /* ExampleUdonNoodleTableViewController.m */,
+			);
+			name = "Udon Noodle";
+			sourceTree = "<group>";
+		};
 		BF20A9F018A10BA400863F6A /* appsfire-sdk */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +176,7 @@
 				BF20AA1518A1203200863F6A /* AFAdSDKSashimiExtendedView.h */,
 				BF20AA1618A1203200863F6A /* AFAdSDKSashimiMinimalView.h */,
 				BF20AA1718A1203200863F6A /* AFAdSDKSashimiView.h */,
+				7B6B1B70190E63F500549386 /* AFAdSDKUdonNoodleControl.h */,
 			);
 			path = sashimi;
 			sourceTree = "<group>";
@@ -173,6 +187,7 @@
 				BF20AA2518A13D2E00863F6A /* Minimal */,
 				BF20AA2C18A163C800863F6A /* Extended */,
 				BF20AA2D18A166FA00863F6A /* Custom */,
+				7BE61D4418FBED9B0097937A /* Udon Noodle */,
 			);
 			name = "Sashimi Examples";
 			sourceTree = "<group>";
@@ -351,6 +366,7 @@
 				BF863DA118A1AEA100FA4C36 /* ExampleCustomSashimiTableViewController.m in Sources */,
 				BF863DA218A1AEA100FA4C36 /* ExampleCustomSashimiTableViewCell.m in Sources */,
 				BF20A9EF18A10ACB00863F6A /* MainViewController.m in Sources */,
+				7BE61D4718FBEDAA0097937A /* ExampleUdonNoodleTableViewController.m in Sources */,
 				BF20AA3318A18BA400863F6A /* ExampleExtendedSashimiTableViewController.m in Sources */,
 				BF20AA2818A13D6200863F6A /* ExampleMinimalSashimiTableViewController.m in Sources */,
 				BF20AA2B18A147C500863F6A /* ExampleMinimalSashimiTableViewCell.m in Sources */,

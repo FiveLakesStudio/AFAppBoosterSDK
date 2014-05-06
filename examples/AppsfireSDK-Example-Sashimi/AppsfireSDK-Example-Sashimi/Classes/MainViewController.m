@@ -13,6 +13,7 @@
 #import "ExampleMinimalSashimiTableViewController.h"
 #import "ExampleExtendedSashimiTableViewController.h"
 #import "ExampleCustomSashimiTableViewController.h"
+#import "ExampleUdonNoodleTableViewController.h"
 
 @implementation MainViewController
 
@@ -33,7 +34,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    return 4;
     
 }
 
@@ -61,6 +62,9 @@
             break;
         case 2:
             cellTitle = @"Sashimi Custom";
+            break;
+        case 3:
+            cellTitle = @"Udon Noodle (Pull-to-Refresh)";
             break;
         default:
             cellTitle = @"";
@@ -99,6 +103,14 @@
         case 2:
         {
             controller = [[ExampleCustomSashimiTableViewController alloc ] initWithStyle:UITableViewStylePlain];
+            [self.navigationController pushViewController:controller animated:YES];
+            break;
+        }
+        
+        // udon noodle
+        case 3:
+        {
+            controller = [[ExampleUdonNoodleTableViewController alloc ] initWithStyle:UITableViewStylePlain];
             [self.navigationController pushViewController:controller animated:YES];
             break;
         }

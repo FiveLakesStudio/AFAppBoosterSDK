@@ -16,6 +16,7 @@
 #import "ExampleMinimalSashimiTableViewController.h"
 #import "ExampleExtendedSashimiTableViewController.h"
 #import "ExampleCustomSashimiTableViewController.h"
+#import "ExampleUdonNoodleTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, AFAdSDKSection) {
     AFAdSDKSectionInterstitial = 0,
@@ -34,6 +35,7 @@ typedef NS_ENUM(NSUInteger, AFAdSDKRowInStream) {
     AFAdSDKRowInStreamSashimiMinimal = 0,
     AFAdSDKRowInStreamSashimiExtended,
     AFAdSDKRowInStreamSashimiCustom,
+    AFAdSDKRowInStreamSashimiUdonNoodle,
     AFAdSDKRowInStreamSashimiNum
 };
 
@@ -166,6 +168,10 @@ typedef NS_ENUM(NSUInteger, AFAdSDKRowInStream) {
                     cell.textLabel.text = @"Sashimi Custom";
                 } break;
                     
+                case AFAdSDKRowInStreamSashimiUdonNoodle: {
+                    cell.textLabel.text = @"Udon Noodle (Pull-to-Refresh)";
+                }
+                    
                 default: {
                 } break;
             }
@@ -214,7 +220,7 @@ typedef NS_ENUM(NSUInteger, AFAdSDKRowInStream) {
                 } break;
             }
             
-            if (![AppsfireAdSDK isThereAModalAdAvailableForType:modalType] == AFAdSDKAdAvailabilityYes) {
+            if (!([AppsfireAdSDK isThereAModalAdAvailableForType:modalType] == AFAdSDKAdAvailabilityYes)) {
                 
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:typeString message:@"This Ad format is not yet ready, try again in a few seconds." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alertView show];
@@ -244,19 +250,24 @@ typedef NS_ENUM(NSUInteger, AFAdSDKRowInStream) {
             
             switch (indexPath.row) {
                 case AFAdSDKRowInStreamSashimiMinimal: {
-                    controller = [[ExampleMinimalSashimiTableViewController alloc ] initWithStyle:UITableViewStylePlain];
+                    controller = [[ExampleMinimalSashimiTableViewController alloc] initWithStyle:UITableViewStylePlain];
                     [self.navigationController pushViewController:controller animated:YES];
                 } break;
                     
                 case AFAdSDKRowInStreamSashimiExtended: {
-                    controller = [[ExampleExtendedSashimiTableViewController alloc ] initWithStyle:UITableViewStylePlain];
+                    controller = [[ExampleExtendedSashimiTableViewController alloc] initWithStyle:UITableViewStylePlain];
                     [self.navigationController pushViewController:controller animated:YES];
                 } break;
                     
                 case AFAdSDKRowInStreamSashimiCustom: {
-                    controller = [[ExampleCustomSashimiTableViewController alloc ] initWithStyle:UITableViewStylePlain];
+                    controller = [[ExampleCustomSashimiTableViewController alloc] initWithStyle:UITableViewStylePlain];
                     [self.navigationController pushViewController:controller animated:YES];
                 } break;
+                    
+                case AFAdSDKRowInStreamSashimiUdonNoodle: {
+                    controller = [[ExampleUdonNoodleTableViewController alloc] initWithStyle:UITableViewStylePlain];
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
                     
                 default:
                     break;
